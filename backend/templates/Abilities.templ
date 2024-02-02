@@ -1,0 +1,9 @@
+package templates
+
+templ Abilities(abilities []string) {
+    <div>
+        for _, ability := range abilities {
+            <div> {ability} </div>
+        }
+    </div>
+}
