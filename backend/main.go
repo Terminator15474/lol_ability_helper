@@ -17,10 +17,8 @@ func main() {
 	for _, champ := range data.Data {
 		abilities = append(abilities, network.GetAbilities(champ.Id)...)
 	}
-	// `start[a-zA-Z ]*?end$`gmis
-	fmt.Println(data.Data["Aatrox"])
-	http.HandleFunc("/abilities", func(res http.ResponseWriter, req *http.Request) {
 
+	http.HandleFunc("/abilities", func(res http.ResponseWriter, req *http.Request) {
 		start := req.URL.Query().Get("start")
 		end := req.URL.Query().Get("end")
 		contains := req.URL.Query().Get("contains")

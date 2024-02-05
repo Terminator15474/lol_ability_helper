@@ -1,9 +1,20 @@
 package templates
 
 templ Abilities(abilities []string) {
-    <div>
+    <div class={wrapper()}>
         for _, ability := range abilities {
-            <div> {ability} </div>
+            <div class={abilityStyle()}> {ability} </div>
         }
     </div>
+}
+
+css abilityStyle() {
+    background-color: black;
+    color: white;
+}
+
+css wrapper() {
+    display: flex;
+    align-content: center;
+    flex-direction: column;
 }
