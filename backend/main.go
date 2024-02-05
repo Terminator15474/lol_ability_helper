@@ -19,6 +19,13 @@ func main() {
 	}
 
 	http.HandleFunc("/abilities", func(res http.ResponseWriter, req *http.Request) {
+		// set headers
+		res.Header().Set("Access-Control-Allow-Origin", "*")
+		res.Header().Set("Content-Type", "text/html")
+		res.Header().Set("Access-Control-Allow-Methods", "*")
+		res.Header().Set("Access-Control-Allow-Credentials", "true")
+		res.Header().Set("Access-Control-Allow-Headers", "*")
+
 		start := req.URL.Query().Get("start")
 		end := req.URL.Query().Get("end")
 		contains := req.URL.Query().Get("contains")
@@ -55,8 +62,14 @@ func main() {
 }
 
 func filter(s string, start string, contains string, end string, not string) bool {
-	if len(not) > 0 {
-		return strings.HasPrefix(s, start) && strings.Contains(s, contains) && strings.HasSuffix(s, end) && !strings.Contains(s, not)
+	ret := strings.HasPrefix(s, start) && strings.HasSuffix(s, end)
+
+	if len(contains) > 0 {
+		ret = ret && strings.ContainsAny(s, contains)
 	}
-	return strings.HasPrefix(s, start) && strings.Contains(s, contains) && strings.HasSuffix(s, end)
+
+	if len(not) > 0 {
+		ret = ret && !strings.ContainsAny(s, not)
+	}
+	return ret
 }
