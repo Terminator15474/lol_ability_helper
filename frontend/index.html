@@ -1,13 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
-  </head>
-  <body>
-      <h1>League of Legends Ability helper</h1>
-      <p hx-get="localhost:8080/test"></p>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="node_modules/htmx.org/dist/htmx.min.js"></script>
+    <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <form class="inputs" hx-get="http://localhost:8080/abilities" hx-trigger="submit" hx-target=".abilities" hx-swap="innerHTML" >
+            <input class="input" id="start" type="text" name="start" placeholder="start"></input>
+            <input class="input" id="end" type="text" name="end" placeholder="end"></input>
+            <input class="input" id="contains" type="text" name="contains" placeholder="contains"></input>
+            <input class="input" id="not" type="text" name="not" placeholder="not"></input>
+            <input class="input" id="length" type="text" name="length" placeholder="length"></input>
+            <input class="input" id="Submit" type="submit" value="Submit">
+        </form>
+        <div class="abilities" hx-get="http://localhost:8080/abilities" hx-trigger="load" hx-target=".abilities" hx-swap="innerHTML" >
+            Loading ...
+        </div>
+    </div>
+</body>
 </html>
