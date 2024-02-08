@@ -1,0 +1,24 @@
+package templates
+
+templ Data(abilities []string) {
+    <div class={wrapper()}>
+        for _, ability := range abilities {
+            <div class={abilityStyle()}> {ability} </div>
+        }
+    </div>
+}
+
+css abilityStyle() {
+    background-color: transparent;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+css wrapper() {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}

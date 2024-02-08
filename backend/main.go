@@ -55,7 +55,7 @@ func main() {
 			}
 		}
 		slices.Sort(filtered)
-		templates.Abilities(filtered).Render(req.Context(), res)
+		templates.Data(filtered).Render(req.Context(), res)
 	})
 
 	http.HandleFunc("/champions", func(res http.ResponseWriter, req *http.Request) {
@@ -91,7 +91,17 @@ func main() {
 			}
 		}
 		slices.Sort(filtered)
-		templates.Abilities(filtered).Render(req.Context(), res)
+		templates.Data(filtered).Render(req.Context(), res)
+	})
+
+	http.HandleFunc("/mode/champion", func(w http.ResponseWriter, r *http.Request) {
+		setHeaders(w)
+		templates.Champion().Render(r.Context(), w)
+	})
+
+	http.HandleFunc("/mode/abilities", func(w http.ResponseWriter, r *http.Request) {
+		setHeaders(w)
+		templates.Abilities().Render(r.Context(), w)
 	})
 
 	fmt.Println("Listening on :8080")
