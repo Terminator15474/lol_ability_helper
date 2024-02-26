@@ -23,7 +23,7 @@ func Champion() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"wrapper\"><button hx-get=\"http://localhost:8080/mode/abilities\" hx-target=\".wrapper\" hx-swap=\"outerHTML\" class=\"swapButton\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"wrapper\"><button hx-get=\"/mode/abilities\" hx-target=\".wrapper\" hx-swap=\"outerHTML\" class=\"swapButton\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -32,7 +32,7 @@ func Champion() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button><form class=\"inputs\" hx-get=\"http://localhost:8080/champions\" hx-trigger=\"submit\" hx-target=\".data\" hx-swap=\"innerHTML\"><input class=\"input\" id=\"start\" type=\"text\" name=\"start\" placeholder=\"start\"> <input class=\"input\" id=\"end\" type=\"text\" name=\"end\" placeholder=\"end\"> <input class=\"input\" id=\"contains\" type=\"text\" name=\"contains\" placeholder=\"contains\"> <input class=\"input\" id=\"not\" type=\"text\" name=\"not\" placeholder=\"not\"> <input class=\"input\" id=\"length\" type=\"text\" name=\"length\" placeholder=\"length\"> <input class=\"input\" id=\"Submit\" type=\"submit\" value=\"Submit\"></form><div class=\"data\" hx-get=\"http://localhost:8080/champions\" hx-trigger=\"load\" hx-target=\".data\" hx-swap=\"innerHTML\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</button><form class=\"inputs\" hx-get=\"/champions\" hx-trigger=\"submit\" hx-target=\".data\" hx-swap=\"innerHTML\"><input class=\"input\" id=\"start\" type=\"text\" name=\"start\" placeholder=\"start\"> <input class=\"input\" id=\"end\" type=\"text\" name=\"end\" placeholder=\"end\"> <input class=\"input\" id=\"contains\" type=\"text\" name=\"contains\" placeholder=\"contains\"> <input class=\"input\" id=\"not\" type=\"text\" name=\"not\" placeholder=\"not\"> <input class=\"input\" id=\"length\" type=\"text\" name=\"length\" placeholder=\"length\"> <input class=\"input\" id=\"Submit\" type=\"submit\" value=\"Submit\"></form><div class=\"data\" hx-get=\"/champions\" hx-trigger=\"load\" hx-target=\".data\" hx-swap=\"innerHTML\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

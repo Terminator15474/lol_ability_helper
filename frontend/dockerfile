@@ -1,0 +1,14 @@
+# build
+FROM node:18.18.0-alpine AS build-stage
+WORKDIR /
+COPY ./package*.json ./
+RUN npm install
+RUN npm install -g vite
+COPY . ./
+RUN vite build
+
+# deploy
+FROM nginx:alpine
+WORKDIR /
+COPY --from=build-stage /dist /usr/share/nginx/html
+EXPOSE 80

@@ -2,8 +2,8 @@ package templates
 
 templ Abilities() {
     <div class="wrapper">
-        <button hx-get="http://localhost:8080/mode/champion" hx-target=".wrapper" hx-swap="outerHTML" class="swapButton">Champions</button>
-        <form class="inputs" hx-get="http://localhost:8080/abilities" hx-trigger="submit" hx-target=".data" hx-swap="innerHTML" >
+        <button hx-get="/mode/champion" hx-target=".wrapper" hx-swap="outerHTML" class="swapButton">Champions</button>
+        <form class="inputs" hx-get="/abilities" hx-trigger="submit" hx-target=".data" hx-swap="innerHTML" >
             <input class="input" id="start" type="text" name="start" placeholder="start"></input>
             <input class="input" id="end" type="text" name="end" placeholder="end"></input>
             <input class="input" id="contains" type="text" name="contains" placeholder="contains"></input>
@@ -11,7 +11,7 @@ templ Abilities() {
             <input class="input" id="length" type="text" name="length" placeholder="length"></input>
             <input class="input" id="Submit" type="submit" value="Submit" />
         </form>
-        <div class="data" hx-get="http://localhost:8080/abilities" hx-trigger="load" hx-target=".data" hx-swap="innerHTML" >
+        <div class="data" hx-get="/abilities" hx-trigger="load" hx-target=".data" hx-swap="innerHTML" >
             Loading ...
         </div>
     </div>

@@ -104,8 +104,12 @@ func main() {
 		templates.Abilities().Render(r.Context(), w)
 	})
 
+	http.Handle("/", http.FileServer(http.Dir("dist")))
+
+	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("dist/assets"))))
+
 	fmt.Println("Listening on :8080")
-	http.ListenAndServe("localhost:8080", nil)
+	http.ListenAndServe("0.0.0.0:8080", nil)
 }
 
 func filter(s string, start string, contains string, end string, not string) bool {
