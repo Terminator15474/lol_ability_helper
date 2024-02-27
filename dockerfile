@@ -19,6 +19,8 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /entrypoint
 FROM gcr.io/distroless/static-debian11 AS release-stage
 WORKDIR /
 COPY --from=build-stage /entrypoint /entrypoint
+COPY --from=build-stage /*.key /
+COPY --from=build-stage /*.crt /
 COPY --from=frontend-stage /dist ./dist
 EXPOSE 8080
 USER nonroot:nonroot

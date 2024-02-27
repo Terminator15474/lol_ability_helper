@@ -109,7 +109,10 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("dist/assets"))))
 
 	fmt.Println("Listening on :8080")
-	http.ListenAndServe("0.0.0.0:8080", nil)
+	err := http.ListenAndServeTLS("0.0.0.0:8080", "MyCertificate.crt", "MyKey.key", nil)
+	if err != nil {
+		fmt.Printf("Serve: %s", err)
+	}
 }
 
 func filter(s string, start string, contains string, end string, not string) bool {
