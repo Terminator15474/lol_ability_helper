@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 type SpecWrapper struct {
@@ -41,6 +42,9 @@ func GetAbilities(id string) []string {
 	json.Unmarshal(body, &wrapper)
 	for _, champ := range wrapper.Data {
 		for _, ability := range champ.Spells {
+			if strings.Contains(ability.Name, "/") {
+				abilities = append(abilities, strings.Split(ability.Name, " / ")...)
+			}
 			abilities = append(abilities, ability.Name)
 		}
 	}

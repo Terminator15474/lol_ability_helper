@@ -109,7 +109,7 @@ func main() {
 	http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("dist/assets"))))
 
 	fmt.Println("Listening on :8080")
-	err := http.ListenAndServeTLS("0.0.0.0:8080", "MyCertificate.crt", "MyKey.key", nil)
+	err := http.ListenAndServeTLS("0.0.0.0:8080", "helper.local.crt", "helper.local.key", nil)
 	if err != nil {
 		fmt.Printf("Serve: %s", err)
 	}
