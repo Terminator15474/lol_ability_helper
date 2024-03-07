@@ -3,7 +3,6 @@ package network
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 )
 
@@ -28,15 +27,12 @@ func GetChampions() *Wrapper {
 		fmt.Printf("Error %s", err)
 		return nil
 	}
+	var wrapper Wrapper
 
-	body, err := ioutil.ReadAll(data.Body)
-
+	err = json.NewDecoder(data.Body).Decode(&wrapper)
 	if err != nil {
 		fmt.Printf("Error %s", err)
 		return nil
 	}
-
-	var wrapper Wrapper
-	json.Unmarshal(body, &wrapper)
 	return &wrapper
 }

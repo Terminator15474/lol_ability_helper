@@ -3,7 +3,6 @@ package network
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"strings"
 )
@@ -30,20 +29,20 @@ func GetAbilities(id string) []string {
 		fmt.Printf("Error: %s", err)
 		return nil
 	}
+	var wrapper SpecWrapper
 
-	body, err := ioutil.ReadAll(res.Body)
+	err = json.NewDecoder(res.Body).Decode(&wrapper)
 	if err != nil {
 		fmt.Printf("Error: %s", err)
 		return nil
 	}
 
-	var wrapper SpecWrapper
 	abilities := []string{}
-	json.Unmarshal(body, &wrapper)
 	for _, champ := range wrapper.Data {
 		for _, ability := range champ.Spells {
 			if strings.Contains(ability.Name, "/") {
 				abilities = append(abilities, strings.Split(ability.Name, " / ")...)
+				continue
 			}
 			abilities = append(abilities, ability.Name)
 		}
